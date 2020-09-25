@@ -146,7 +146,7 @@ async def dyno_usage(dyno):
                 await dyno.client.send_message(
                     dyno.chat_id, f"`{r.reason}`", reply_to=dyno.id
                 )
-                await dyno.edit("`Can't get information...`")
+                await dyno.edit("`Can't get information....`")
                 return False
             result = await r.json()
             quota = result["account_quota"]
