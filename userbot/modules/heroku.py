@@ -186,7 +186,7 @@ async def dyno_usage(dyno):
             return True
          
 @register(outgoing=True, pattern=r"^.usage1(?: |$)")
-async def dyno_usage(dyno):
+async def dyno_usage1(dyno):
     """
     Get your account Dyno Usage
     """
