@@ -127,7 +127,7 @@ async def dyno_usage(dyno):
     """
     Get your account Dyno Usage
     """
-    await dyno.edit("`Getting Information...`")
+    await dyno.edit("`Getting Information....`")
     useragent = (
         "Mozilla/5.0 (Linux; Android 10; SM-G975F) "
         "AppleWebKit/537.36 (KHTML, like Gecko) "
@@ -153,11 +153,11 @@ async def dyno_usage(dyno):
             quota_used = result["quota_used"]
 
             """ - User Quota Limit and Used - """
-            remaining_quota = 'UNLIMITED'
-            percentage = '0%'
-            minutes_remaining = 'UNLIMITED'
-            hours = 'UNLIMITED'
-            minutes = 'UNLIMITED'
+            remaining_quota = quota - quota_used
+            percentage = math.floor(remaining_quota / quota * 100)
+            minutes_remaining = remaining_quota / 60
+            hours = math.floor(minutes_remaining / 60)
+            minutes = math.floor(minutes_remaining % 60)
 
             """ - User App Used Quota - """
             Apps = result["apps"]
@@ -180,8 +180,8 @@ async def dyno_usage(dyno):
                 f"{AppMinutes} minute(s)  -  {AppPercentage}%**"
                 "\n-------------------------------------------------------------\n"
                 " -> `Dyno hours quota remaining this month`:\n"
-                f"     •  **{hours} hour(s), {minutes} minute(s)  "
-                f"-  {percentage}%**"
+                f"     • ∞ hour(s), ∞ minute(s) - UNLIMITED  "
+                f"-  0%**"
             )
             return True
          
